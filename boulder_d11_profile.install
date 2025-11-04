@@ -16,7 +16,7 @@ use Symfony\Component\Yaml\Yaml;
  *
  * @see system_install()
  */
-function boulder_profile_install() {
+function boulder_d11_profile_install() {
   // First, do everything in standard profile.
   include_once DRUPAL_ROOT . '/core/profiles/standard/standard.install';
   standard_install();
@@ -28,38 +28,6 @@ function boulder_profile_install() {
   _boulder_profile_install_webform_settings();
 }
 
-/**
- * Adds default shortcuts (CuBoulder/tiamat10-profile#67).
- */
-function boulder_profile_update_9501() {
-  _boulder_profile_install_shortcuts();
-}
-
-/**
- * Updates Webform defaults (CuBoulder/tiamat10-profile#81).
- */
-function boulder_profile_update_9502() {
-  _boulder_profile_install_webform_settings();
-}
-
-/**
- * Adds abstract text editor configuration.
- */
-function boulder_profile_update_9503() {
-  $profilePath = \Drupal::getContainer()->get('extension.path.resolver')->getPath('profile', 'boulder_profile');
-  
-  // Install the abstract filter format.
-  $filterFormatYaml = Yaml::parse(file_get_contents($profilePath . '/config/install/filter.format.abstract.yml'));
-  \Drupal::configFactory()->getEditable('filter.format.abstract')
-    ->setData($filterFormatYaml)
-    ->save();
-  
-  // Install the abstract editor configuration.
-  $editorYaml = Yaml::parse(file_get_contents($profilePath . '/config/install/editor.editor.abstract.yml'));
-  \Drupal::configFactory()->getEditable('editor.editor.abstract')
-    ->setData($editorYaml)
-    ->save();
-}
 
 /**
  * Installs default (privileged) users.
