@@ -1,0 +1,6 @@
+{
+    "name": "cu-boulder/boulder_d11_profile",
+    "description": "Drupal 11 install profile for CU Boulder - Web Express",
+    "license": "GPL-2.0-or-later",
+    "type": "drupal-custom-profile"
+}
