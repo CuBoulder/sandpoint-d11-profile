@@ -14,7 +14,7 @@ use Drupal\Core\Form\FormStateInterface;
  * Allows the profile to alter the site configuration form.
  */
 function boulder_d11_profile_page_form_install_configure_form_alter(&$form, FormStateInterface $form_state) {
-  $form['#submit'][] = 'boulder_profile_form_install_configure_submit';
+  $form['#submit'][] = 'boulder_d11_profile_form_install_configure_submit';
 }
 
 /**

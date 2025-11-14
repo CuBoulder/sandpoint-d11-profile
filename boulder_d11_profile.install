@@ -22,17 +22,17 @@ function boulder_d11_profile_install() {
   standard_install();
 
   // Afterward, run the custom install tasks.
-  _boulder_profile_install_users();
-  _boulder_profile_install_shortcuts();
-  _boulder_profile_install_administerusersbyrole_settings();
-  _boulder_profile_install_webform_settings();
+  _boulder_d11_profile_install_users();
+  _boulder_d11_profile_install_shortcuts();
+  _boulder_d11_profile_install_administerusersbyrole_settings();
+  _boulder_d11_profile_install_webform_settings();
 }
 
 
 /**
  * Installs default (privileged) users.
  */
-function _boulder_profile_install_users() {
+function _boulder_d11_profile_install_users() {
   /*
    * Create inital users for the Web Team
    */
@@ -93,7 +93,7 @@ function _boulder_profile_install_users() {
 /**
  * Installs default shortcuts.
  */
-function _boulder_profile_install_shortcuts() {
+function _boulder_d11_profile_install_shortcuts() {
   Shortcut::create([
     'shortcut_set' => 'default',
     'title' => t('Blocks'),
@@ -115,8 +115,8 @@ function _boulder_profile_install_shortcuts() {
  * This workaround is necessary as the settings get overriden by the contrib
  * module following the installation of the roles.
  */
-function _boulder_profile_install_administerusersbyrole_settings() {
-  $profilePath = Drupal::getContainer()->get('extension.path.resolver')->getPath('profile', 'boulder_profile');
+function _boulder_d11_profile_install_administerusersbyrole_settings() {
+  $profilePath = Drupal::getContainer()->get('extension.path.resolver')->getPath('profile', 'boulder_d11_profile');
   $settingsYaml = Yaml::parse(file_get_contents($profilePath . '/config/install/administerusersbyrole.settings.yml'));
   \Drupal::configFactory()->getEditable('administerusersbyrole.settings')->set('roles', $settingsYaml['roles'])->save();
 }
@@ -124,7 +124,7 @@ function _boulder_profile_install_administerusersbyrole_settings() {
 /**
  * Installs "Webform" contrib module settings.
  */
-function _boulder_profile_install_webform_settings() {
+function _boulder_d11_profile_install_webform_settings() {
   $settings = \Drupal::configFactory()->getEditable('webform.settings');
   $htmlEditorSettings = $settings->get('html_editor');
   $htmlEditorSettings['element_format'] = $htmlEditorSettings['mail_format'] = 'wysiwyg';
